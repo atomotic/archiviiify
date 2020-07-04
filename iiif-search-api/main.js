@@ -5,7 +5,6 @@ import { oakCors } from "https://deno.land/x/cors/mod.ts";
 import { makeContentSearchResponse } from "./iiif.js";
 
 const solr = "http://solr:8983/solr";
-// const solr = "http://localhost:8983/solr";
 const core = "ocr";
 
 const router = new Router();
