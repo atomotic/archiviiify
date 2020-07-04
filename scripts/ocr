@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+ITEM="$1"
+find data/$ITEM/*.jp2 >ocr/$ITEM.list
+tesseract -l ita "ocr/$ITEM.list" "ocr/$ITEM" hocr

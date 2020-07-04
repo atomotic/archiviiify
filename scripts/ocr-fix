@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+ITEM=$1
+parallel -j1 sd -f w {1} {2} "ocr/$ITEM.hocr" \
+    ::: $(pup .ocr_page attr{id} <"ocr/$ITEM.hocr") \
+    :::+ $(find data/$ITEM/*.jp2 -exec basename {} \;)

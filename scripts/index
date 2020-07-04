@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+ITEM="$1"
+curl "http://localhost:8983/solr/ocr/update?commitWithin=1000&overwrite=true" -H "Content-Type: application/json" --data-binary "
+[{
+    'id': '$ITEM',
+    'ocr_text': '/ocr/$ITEM.hocr',
+	'source':''
+}]
+"

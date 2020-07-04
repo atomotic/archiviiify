@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+ITEM="$1"
+deno run --allow-read --allow-net scripts/make-manifest.js "$ITEM" |jq > www/manifests/$ITEM.json

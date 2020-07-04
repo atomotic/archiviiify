@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ITEM="$1"
+JP2=$(ia list -l -f "Single Page Processed JP2 ZIP" "$ITEM")
+echo "downloading: $JP2"
+curl -L -o origin/"$ITEM.zip" "$JP2"
+
+mkdir "data/$ITEM"
+cd "data/$ITEM" || exit
+unzip -j ../../origin/"$ITEM.zip"
+rm ../../origin/"$ITEM.zip"
