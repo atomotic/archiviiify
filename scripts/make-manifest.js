@@ -1,3 +1,5 @@
+import { expandGlob } from "https://deno.land/std/fs/mod.ts";
+
 const manifest = {
   "@context": "http://iiif.io/api/presentation/2/context.json",
   "@type": "sc:Manifest",
@@ -65,8 +67,7 @@ manifest.label = "";
 manifest.service["@id"] = `http://localhost:8094/search/${item}`;
 manifest.sequences[0]["@id"] = `${base}/${item}/seq/1`;
 
-const canvases = {};
-for await (const page of Deno.readDir(`./data/${item}`)) {
+for await (const page of expandGlob(`./data/${item}/*.jp2`)) {
   const iiifapi = await fetch(`${base}/${item}/${page.name}/info.json`);
   const image = await iiifapi.json();
 
@@ -75,20 +76,12 @@ for await (const page of Deno.readDir(`./data/${item}`)) {
   canvas.images[0].on = `${base}/${item}/${page.name}`;
   canvas.images[0].resource["@id"] = `${base}/${item}/${page.name}`;
   canvas.images[0].resource.service["@id"] = `${base}/${item}/${page.name}`;
-
   canvas.images[0].resource.height = image.height;
   canvas.images[0].resource.width = image.width;
-
   canvas.height = image.height;
   canvas.width = image.width;
-  canvases[page.name] = canvas;
-}
 
-// TODO: figure a better way to sort Deno.readDir()
-Object.keys(canvases)
-  .sort()
-  .forEach(function (key) {
-    manifest.sequences[0].canvases.push(canvases[key]);
-  });
+  manifest.sequences[0].canvases.push(canvas);
+}
 
 console.log(JSON.stringify(manifest));
