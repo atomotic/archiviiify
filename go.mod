@@ -15,7 +15,6 @@ require (
 	github.com/atomotic/iiif-presentation.go v0.0.0-20230327143406-f6a31ac83304
 	github.com/charmbracelet/lipgloss v0.7.1
 	github.com/joho/godotenv v1.5.1
-	golang.org/x/exp v0.0.0-20230321023759-10a507213a29
 )
 
 require (
