@@ -18,3 +18,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+.goreleaser.yaml
+TOKEN
+archiviiify
+justfile
