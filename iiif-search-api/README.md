@@ -1,1 +1,0 @@
-# iiif-search-api

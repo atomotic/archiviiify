@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="theme-color" content="#000000" />
-    <title>Mirador 3</title>
+    <title>ARCHIVIIIFY</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -16,18 +16,21 @@
   <body>
     <div
       id="mirador"
-      style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"
+      style="position: absolute; top: 0; bottom: 0; left: 0; right: 0"
     ></div>
-    <script type="text/javascript" src="mirador.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://mirador-dev.netlify.app/dist/mirador.min.js"
+    ></script>
     <script type="text/javascript">
-	  var params = new URL(window.location.href).searchParams;
+      var params = new URL(window.location.href).searchParams;
       var manifestId = params.get("manifest");
-      
+
       var miradorInstance = Mirador.viewer({
         id: "mirador",
         windows: [
           {
-            loadedManifest: `manifests/${manifestId}.json`,
+            loadedManifest: `/manifests/${manifestId}.json`,
             thumbnailNavigationPosition: "far-bottom",
           },
         ],
