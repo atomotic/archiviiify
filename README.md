@@ -54,3 +54,8 @@ archiviiify
 view http://localhost:9000/?manifest=codici-immaginari-1
 ```
 
+# Limitations
+
+* The command-line interface (CLI) design is currently a work in progress and needs improvement in terms of aesthetics.
+* The metadata embedding in IIIF manifest has not been fully tested, and may require further optimization.
+* Currently, the IIIF manifest generation does not support items containing multiple subitems. This issue can be resolved by using an IIIF collection manifest.
