@@ -54,6 +54,14 @@ archiviiify
 view http://localhost:9000/?manifest=codici-immaginari-1
 ```
 
+# Demo
+
+
+
+https://user-images.githubusercontent.com/67420/229451323-55e7fd84-e78f-4a2f-b4a2-9eff08b35917.mp4
+
+
+
 # Limitations
 
 * The command-line interface (CLI) design is currently a work in progress and needs improvement in terms of aesthetics.
