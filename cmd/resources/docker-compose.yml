@@ -1,11 +1,11 @@
 version: "3.8"
 services:
   iipsrv:
-    image: atomotic/iipsrv:latest
+    image: iipsrv/iipsrv
     volumes:
       - ./data/images:/images
-      - ./data/www:/www
-      - ./data/manifests:/www/manifests
+      - ./data/www:/var/www/localhost/htdocs
+      - ./data/manifests:/var/www/localhost/htdocs/manifests
     environment:
       - LOGFILE=/dev/stderr
       - URI_MAP=iiif=>IIIF
