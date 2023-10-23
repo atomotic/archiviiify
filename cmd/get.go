@@ -12,8 +12,8 @@ import (
 
 var Item string
 
-var runCmd = &cobra.Command{
-	Use:   "run",
+var getCmd = &cobra.Command{
+	Use:   "get",
 	Short: "download an item from Internet Archive and generate an IIIF manifest",
 	Long:  `download an item from Internet Archive and generate an IIIF manifest`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -22,18 +22,18 @@ var runCmd = &cobra.Command{
 			os.Exit(0)
 		}
 
-		Logo()
+		fmt.Printf("archiviiify\n\n")
 
 		item, err := internetarchive.New(Item)
 		if err != nil {
 			fmt.Println("metadata error")
 		}
 
-		fmt.Printf("· downloading  %s\n", item.Metadata.Title)
-		fmt.Printf("· from         %s\n", item.JP2Zip)
+		fmt.Printf("[1/3] Downloading %s:\n", item.Metadata.Title)
+		fmt.Printf(" Source: %s\n", item.JP2Zip)
 
 		if item.Downloaded() {
-			fmt.Println("already downloaded")
+			fmt.Println(" Item already downloaded")
 		} else {
 			err = item.Download()
 			if err != nil {
@@ -44,18 +44,18 @@ var runCmd = &cobra.Command{
 
 		time.Sleep(2 * time.Second)
 
-		fmt.Println("· generating IIIF manifest")
+		fmt.Println("[2/3] Generating IIIF manifest")
 		err = item.Manifest()
 		if err != nil {
 			fmt.Print(err)
 			os.Exit(0)
 		}
-		fmt.Printf("view http://localhost:9000/?manifest=%s\n", item.Metadata.Identifier)
+		fmt.Printf("[3/3] View the item:\n %s/?manifest=%s\n", os.Getenv("HOSTNAME"), item.Metadata.Identifier)
 
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(runCmd)
-	runCmd.Flags().StringVarP(&Item, "identifier", "i", "", "IA item identifier")
+	rootCmd.AddCommand(getCmd)
+	getCmd.Flags().StringVarP(&Item, "identifier", "i", "", "IA item identifier")
 }

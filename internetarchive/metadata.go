@@ -151,7 +151,8 @@ func (i *Item) Manifest() error {
 
 	counter := 1
 	for _, image := range jp2 {
-		api := fmt.Sprintf("http://localhost:9000/iiif/%s/%s/info.json",
+		api := fmt.Sprintf("%s/iiif/%s/%s/info.json",
+			os.Getenv("HOSTNAME"),
 			i.Metadata.Identifier,
 			path.Base(image))
 
